@@ -20,5 +20,9 @@ class Page extends Model
         'content',
     ];
 
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
 
 }

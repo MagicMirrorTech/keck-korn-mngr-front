@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
+use App\Models\Product;
+use App\Models\SelectedProduct;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -13,6 +16,36 @@ class PageController extends Controller
         $pages = Page::all();
         return view('pages.index', compact('pages'));
     }
+
+    public function home()
+    {
+        $pages = Page::where('slug', 'home')->first();
+        $sections = $pages ? $pages->sections : [] ;
+        $testimonials = Testimonial::all();
+
+        return view('pages.home', compact('sections', 'testimonials'));
+    }
+
+    public function product()
+    {
+        $page = Page::where('slug', 'product')->first();
+        $products = Product::with('details')->get();
+
+        return view('pages.product', compact('products'));
+    }
+
+    public function checkout()
+    {
+        $page = Page::where('slug', 'checkout')->first();
+        $selected_products = SelectedProduct::with('details')->get();
+
+        return view('pages.checkout', compact('selected_products'));
+    }
+
+    // public function process()
+    // {
+    //     return view('pages.process');
+    // }
 
     public function create()
     {
