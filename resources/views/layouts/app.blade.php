@@ -16,16 +16,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('pages.index') }}">CMS Home</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('pages.index') }}">Manage Pages</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.home') }}">Web Home</a>
+                        <a class="nav-link" href="{{ route('products.index') }}">Manage Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.product') }}">Products</a>
+                        <a class="nav-link" href="{{ route('sections.index') }}">Manage Sections</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('pages.checkout') }}">Checkout</a>
+                        <a class="nav-link" href="{{ route('pages.home') }}">Demo Site</a>
                     </li>
                 </ul>
             </div>

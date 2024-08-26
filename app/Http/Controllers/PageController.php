@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\SelectedProduct;
+use App\Models\OrderItem;
 use App\Models\Testimonial;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -14,7 +16,10 @@ class PageController extends Controller
     public function index()
     {
         $pages = Page::all();
-        return view('pages.index', compact('pages'));
+        $sections = Section::all();
+
+
+        return view('pages.index', compact('pages','sections'));
     }
 
     public function home()
@@ -38,14 +43,10 @@ class PageController extends Controller
     {
         $page = Page::where('slug', 'checkout')->first();
         $selected_products = SelectedProduct::with('details')->get();
+        $orderItems = OrderItem::all();
 
-        return view('pages.checkout', compact('selected_products'));
+        return view('pages.checkout', compact('selected_products', 'orderItems'));
     }
-
-    // public function process()
-    // {
-    //     return view('pages.process');
-    // }
 
     public function create()
     {
@@ -54,14 +55,17 @@ class PageController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+        $validatedData = $request->validate([
+            'title'     => 'required',
+            'slug'      => 'required',
         ]);
 
-        Page::create($request->all());
+        $page = Page::create($validatedData);
 
-        return redirect()->route('pages.index')->with('success', 'Page created successfully.');
+
+        return redirect()
+            ->route('pages.index', $page)
+            ->with('success', "Page '{$page->name}' created successfully.");
     }
 
     public function edit(Page $page)
@@ -73,7 +77,7 @@ class PageController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'content' => 'required',
+            'slug' => 'required',
         ]);
 
         $page->update($request->all());

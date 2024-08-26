@@ -2,6 +2,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+<!-- PAGE MANAGEMENT SECTION -->
 <div class="container">
     <h1>Manage Pages</h1>
     <a href="{{ route('pages.create') }}" class="btn btn-primary mb-3">Create New Page</a>
@@ -18,7 +20,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
-                    <th>Content</th>
+                    <th>Link Name</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -27,7 +29,7 @@
                     <tr>
                         <td>{{ $page->id }}</td>
                         <td>{{ $page->title }}</td>
-                        <td>{{ Str::limit($page->content, 50) }}</td>
+                        <td>{{ Str::limit($page->slug, 50) }}</td>
                         <td>
                             <a href="{{ route('pages.edit', $page->id) }}" class="btn btn-warning">Edit</a>
                             <form action="{{ route('pages.destroy', $page->id) }}" method="POST" style="display:inline;">
@@ -44,4 +46,7 @@
         <p>No pages found. <a href="{{ route('pages.create') }}">Create a new page</a>.</p>
     @endif
 </div>
+
+
+
 @endsection

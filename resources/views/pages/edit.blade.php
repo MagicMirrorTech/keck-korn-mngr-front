@@ -7,8 +7,8 @@
             @method('PUT')
             <label>Title:</label>
             <input type="text" name="title" value="{{ $page->title }}">
-            <label>Content:</label>
-            <textarea name="content">{{ $page->content }}</textarea>
+            <label>Link Name:</label>
+            <textarea name="slug">{{ $page->slug }}</textarea>
             <button type="submit">Update</button>
         </form>
 @endsection

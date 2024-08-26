@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Our Products</h1>
     <div class="row">
-        @foreach($selectedProducts as $product)
+        @foreach($products as $product)
             <div class="col-md-4">
                 <h2>{{ $product->name }}</h2>
                 <p>{{ $product->description }}</p>

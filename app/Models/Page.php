@@ -17,7 +17,7 @@ class Page extends Model
      */
     protected $fillable = [
         'title',
-        'content',
+        'slug',
     ];
 
     public function sections()

@@ -6,8 +6,8 @@
         @csrf
         <label>Title:</label>
         <input type="text" name="title">
-        <label>Content:</label>
-        <textarea name="content"></textarea>
+        <label>Link Name:</label>
+        <textarea name="slug"></textarea>
         <button type="submit">Save</button>
     </form>
 
